@@ -18,6 +18,8 @@ var answer5El = document.getElementById("o5-q5");
 var submitEl = document.querySelector(".btn-submit");
 var check1El = document.getElementById("check1");
 
+var radioDen1El = document.getElementById("a");
+
 //Declare setTime function for the timer count down 5 minutes
 
 function setTime() {
@@ -88,14 +90,6 @@ function quizQuestions() {
   // show the first question to the user
   p1El.textContent = questions[0].question;
 
-  // for (var i = 0; i <= userChoices.length; i++) {
-  //   if (questions[0].userChoices[0] === questions[0].correctAnswer) {
-  //     check1El.textContent = "CORRECT";
-  //   } else {
-  //     check1El.textContent = "WRONG";
-  //   }
-  // }
-
   // show the second question to the user
   p2El.textContent = questions[1].question;
   // show the third question to the user
@@ -107,39 +101,45 @@ function quizQuestions() {
 }
 
 function checkAnswers() {
-  var answers;
-  var correct = 0;
-  var wrong = 0;
-  //for loop to iterater over questions array - correctAnswer
-  if (answer1El.click) {
-    correct++;
-  } else {
-    wrong++;
-  }
+  // if (radioDen1El.checked) {
+  //   check1El.textContent = "CORRECT";
+  // } else {
+  //   check1El.textContent = "WRONG";
+  // }
 
-  if (answer2El.click) {
-    correct++;
-  } else {
-    wrong++;
-  }
+  // var answers;
+  // var correct = 0;
+  // var wrong = 0;
+  // //for loop to iterater over questions array - correctAnswer
+  // if (answer1El.click) {
+  //   correct++;
+  // } else {
+  //   wrong++;
+  // }
 
-  if (answer3El.click) {
-    correct++;
-  } else {
-    wrong++;
-  }
+  // if (answer2El.click) {
+  //   correct++;
+  // } else {
+  //   wrong++;
+  // }
 
-  if (answer4El.click) {
-    correct++;
-  } else {
-    wrong++;
-  }
+  // if (answer3El.click) {
+  //   correct++;
+  // } else {
+  //   wrong++;
+  // }
 
-  if (answer5El.click) {
-    correct++;
-  } else {
-    wrong++;
-  }
+  // if (answer4El.click) {
+  //   correct++;
+  // } else {
+  //   wrong++;
+  // }
+
+  // if (answer5El.click) {
+  //   correct++;
+  // } else {
+  //   wrong++;
+  // }
 
   console.log(correct);
 }

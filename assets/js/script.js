@@ -1,24 +1,45 @@
+var questionIndex = 0;
+
+var questions = [
+  {
+    question: " what is the capital of Colorado?",
+    userChoices: ["Denver", "Salem", "Seattle", "Austin"],
+    correctAnswer: "Denver",
+  },
+
+  {
+    question: " what is the capital of California?",
+    userChoices: ["Springfield", "Seattle", "Sacramento", "Austin"],
+    correctAnswer: "Sacramento",
+  },
+
+  {
+    question: " what is the capital of Texas?",
+    userChoices: ["Austin", "Houston", "Carson City", "Denver"],
+    correctAnswer: "Austin",
+  },
+
+  {
+    question: " what is the capital of Nevada?",
+    userChoices: ["Carson City", "Salem", "San Antoio", "Denver"],
+    correctAnswer: "Carson City",
+  },
+
+  {
+    question: " what is the capital of Illinois?",
+    userChoices: ["Montpelier", "Seattle", "Springfield", "Baton Rouges"],
+    correctAnswer: "Springfield",
+  },
+];
 //Declare reference variables
 var startQuizEl = document.getElementById("start-quiz");
 var headerEl = document.getElementById("haeder");
 var mainEl = document.querySelector(".content");
 var timerEL = document.querySelector(".timer");
-var quizFormEl = document.getElementById("quiz-form");
-var p1El = document.getElementById("p1");
-var p2El = document.getElementById("p2");
-var p3El = document.getElementById("p3");
-var p4El = document.getElementById("p4");
-var p5El = document.getElementById("p5");
-//var options1EL = document.getElementById("options1");
-var answer1El = document.getElementById("o1-q1");
-var answer2El = document.getElementById("o2-q2");
-var answer3El = document.getElementById("o3-q3");
-var answer4El = document.getElementById("o4-q4");
-var answer5El = document.getElementById("o5-q5");
-var submitEl = document.querySelector(".btn-submit");
-var check1El = document.getElementById("check1");
 
-var radioDen1El = document.getElementById("a");
+//var submitEl = document.querySelector(".btn-submit");
+
+var check1El = document.getElementById("check1");
 
 //Declare setTime function for the timer count down 5 minutes
 
@@ -40,119 +61,69 @@ function setTime() {
   }, 60000);
 }
 
-function quizQuestions() {
-  // grap a reference to the element that display the question
-  // able to show the question to the user - completed
-  //how do i show the choices tpo the user - completed
-  // for loop to iterate over the userchoice array and show the value in the button
-  //update text content of the button
+function getQuestion() {
+  var divQuestions = document.getElementById("questions");
+  var currentQuestion = questions[questionIndex];
+  console.log(currentQuestion);
+  var questionTitleEl = document.getElementById("question-title");
+  //var currentQuestion = questions[questionIndex];
+  questionTitleEl.textContent = currentQuestion.question;
+  //console.log(questionTitleEl);
+  console.log(currentQuestion.question);
+  //console.log(currentQuestion.userChoices);
+  console.log(questionIndex);
+  //create a button for each userchoice
+  //create a button with createElement()
 
-  //console.log(p1El);
-  //console.log(quizFormEl);
+  currentQuestion.userChoices.forEach(function (choice, i) {
+    //create a button for each choice
+    choiceBtnEl = document.createElement("button");
+    choiceBtnEl.setAttribute("data-btn", choice);
+    //update the text content of the button to equal the value
+    choiceBtnEl.textContent = choice;
+    //console.log(choice);
+    //append it to the DOM
+    choicesEl = document.getElementById("choices");
+    choicesEl.append(choiceBtnEl);
+  });
 
-  // how to get these questions displayed to the DOM
-  var questions = [
-    {
-      question: " what is the capital of Colorado?",
-      userChoices: ["Denver", "Salem", "Seattle", "Austin"],
-      correctAnswer: "Denver",
-    },
+  choicesEl = document.getElementById("choices");
+  choicesEl.addEventListener("click", function (event) {
+    var element = event.target;
+    var buttonAnswer = element.getAttribute("data-btn"); // get data-btn for this button
+    //console.log(buttonAnswer);
 
-    {
-      question: " what is the capital of California?",
-      userChoices: ["Springfield", "Seattle", "Sacramento", "Austin"],
-      correctAnswer: "OptionC",
-    },
+    if (buttonAnswer === currentQuestion.correctAnswer) {
+      check1El.textContent = "correct";
+    } else {
+      check1El.textContent = "wrong";
+    }
+    choicesEl.textContent = "";
+    questionIndex++;
 
-    {
-      question: " what is the capital of Texas?",
-      userChoices: ["Austin", "Huston", "Carson City", "Denver"],
-      correctAnswer: "OptionB",
-    },
-
-    {
-      question: " what is the capital of Nevada?",
-      userChoices: ["Carson City", "Salem", "San Antoio", "Denver"],
-      correctAnswer: "OptionA",
-    },
-
-    {
-      question: " what is the capital of Illinois?",
-      userChoices: ["Montpelier", "Seattle", "Springfield", "Baton Rouges"],
-      correctAnswer: "OptionC",
-    },
-  ];
-
-  //how can i show this value to the user?
-
-  quizFormEl.removeAttribute("class");
-
-  // show the first question to the user
-  p1El.textContent = questions[0].question;
-
-  // show the second question to the user
-  p2El.textContent = questions[1].question;
-  // show the third question to the user
-  p3El.textContent = questions[2].question;
-  // show the fourth question to the user
-  p4El.textContent = questions[3].question;
-  // show the fifth question to the user
-  p5El.textContent = questions[4].question;
+    getQuestion();
+  });
+  console.log(questionIndex);
 }
 
-function checkAnswers() {
-  // if (radioDen1El.checked) {
-  //   check1El.textContent = "CORRECT";
-  // } else {
-  //   check1El.textContent = "WRONG";
-  // }
+// nextEl = document.createElement("button");
+// nextEl.textContent = "Next";
+// choicesEl.append(nextEl);
 
-  // var answers;
-  // var correct = 0;
-  // var wrong = 0;
-  // //for loop to iterater over questions array - correctAnswer
-  // if (answer1El.click) {
-  //   correct++;
-  // } else {
-  //   wrong++;
-  // }
+// function checkAnswers() {}
 
-  // if (answer2El.click) {
-  //   correct++;
-  // } else {
-  //   wrong++;
-  // }
-
-  // if (answer3El.click) {
-  //   correct++;
-  // } else {
-  //   wrong++;
-  // }
-
-  // if (answer4El.click) {
-  //   correct++;
-  // } else {
-  //   wrong++;
-  // }
-
-  // if (answer5El.click) {
-  //   correct++;
-  // } else {
-  //   wrong++;
-  // }
-
-  console.log(correct);
-}
-
+//getQuestion();
 startQuizEl.addEventListener("click", function (event) {
   event.preventDefault();
   mainEl.remove();
   setTime();
-  quizQuestions();
+  getQuestion();
 });
 
-submitEl.addEventListener("click", function (event) {
-  event.preventDefault();
-  quizFormEl.remove();
-  checkAnswers();
-});
+// submitEl.addEventListener("click", function (event) {
+//   event.preventDefault();
+//   choicesEl.remove();
+//   questionTitleEl.remove();
+//   getQuestion();
+
+// });

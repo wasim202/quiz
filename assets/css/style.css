@@ -2,9 +2,9 @@ body {
   background-color: beige;
 }
 
-.hide {
+/* #questions {
   display: none;
-}
+} */
 .btn-submit {
   margin-top: 40px;
 }

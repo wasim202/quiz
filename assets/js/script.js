@@ -36,6 +36,7 @@ var startQuizEl = document.getElementById("start-quiz");
 var headerEl = document.getElementById("haeder");
 var mainEl = document.querySelector(".content");
 var timerEL = document.querySelector(".timer");
+var choicesEl = document.getElementById("choices");
 
 //var submitEl = document.querySelector(".btn-submit");
 
@@ -43,10 +44,11 @@ var check1El = document.getElementById("check1");
 
 //Declare setTime function for the timer count down 5 minutes
 
+var minutesLeft = 80;
+var timer;
 function setTime() {
-  var minutesLeft = 5;
   timerEL.textContent = minutesLeft + " minutes left";
-  var timerInterval = setInterval(function () {
+  //var timerInterval = setInterval(function () {
     // timerEL.textContent = minutesLeft + "minutesLeft";
     if (minutesLeft > 1) {
       timerEL.textContent = minutesLeft + " minutes left";
@@ -56,9 +58,9 @@ function setTime() {
       minutesLeft--;
     } else {
       timerEL.textContent = "TIME IS UP";
-      clearInterval(timerInterval);
+      clearInterval(timer);
     }
-  }, 60000);
+  //}, 1000);
 }
 
 function getQuestion() {
@@ -75,7 +77,7 @@ function getQuestion() {
   //create a button for each userchoice
   //create a button with createElement()
 
-  currentQuestion.userChoices.forEach(function (choice, i) {
+  currentQuestion.userChoices.forEach(function (choice) {
     //create a button for each choice
     choiceBtnEl = document.createElement("button");
     choiceBtnEl.setAttribute("data-btn", choice);
@@ -83,28 +85,33 @@ function getQuestion() {
     choiceBtnEl.textContent = choice;
     //console.log(choice);
     //append it to the DOM
-    choicesEl = document.getElementById("choices");
+    
     choicesEl.append(choiceBtnEl);
   });
 
-  choicesEl = document.getElementById("choices");
-  choicesEl.addEventListener("click", function (event) {
-    var element = event.target;
-    var buttonAnswer = element.getAttribute("data-btn"); // get data-btn for this button
-    //console.log(buttonAnswer);
-
-    if (buttonAnswer === currentQuestion.correctAnswer) {
-      check1El.textContent = "correct";
-    } else {
-      check1El.textContent = "wrong";
-    }
-    choicesEl.textContent = "";
-    questionIndex++;
-
-    getQuestion();
-  });
+ 
   console.log(questionIndex);
 }
+choicesEl.addEventListener("click", function (event) {
+  var element = event.target;
+  var buttonAnswer = element.getAttribute("data-btn"); // get data-btn for this button
+  //console.log(buttonAnswer);
+  var currentQuestion = questions[questionIndex];
+  if (buttonAnswer === currentQuestion.correctAnswer) {
+    check1El.textContent = "correct";
+  } else {
+    check1El.textContent = "wrong";
+    minutesLeft -=1;
+  }
+  choicesEl.textContent = "";
+  questionIndex++;
+  if (questionIndex >= questions.length){
+    clearInterval(timer);
+    alert(`game over, your final score is ${minutesLeft}`)
+  }else{
+    getQuestion();
+  }
+});
 
 // nextEl = document.createElement("button");
 // nextEl.textContent = "Next";
@@ -116,7 +123,7 @@ function getQuestion() {
 startQuizEl.addEventListener("click", function (event) {
   event.preventDefault();
   mainEl.remove();
-  setTime();
+  timer = setInterval(setTime,1000);
   getQuestion();
 });
 

@@ -42,20 +42,20 @@ var choicesEl = document.getElementById("choices");
 
 var check1El = document.getElementById("check1");
 
-//Declare setTime function for the timer count down 5 minutes
+//Declare setTime function for the timer count down 80 seconds
 
-var minutesLeft = 80;
+var secondsLeft = 80;
 var timer;
 function setTime() {
-  timerEL.textContent = minutesLeft + " minutes left";
+  timerEL.textContent = secondsLeft + " seconds left";
   //var timerInterval = setInterval(function () {
-    // timerEL.textContent = minutesLeft + "minutesLeft";
-    if (minutesLeft > 1) {
-      timerEL.textContent = minutesLeft + " minutes left";
-      minutesLeft--;
-    } else if (minutesLeft === 1) {
-      timerEL.textContent = minutesLeft + " minute left";
-      minutesLeft--;
+    // timerEL.textContent = secondsLeft + "secondsLeft";
+    if (secondsLeft > 1) {
+      timerEL.textContent = secondsLeft + " seconds left";
+      secondsLeft--;
+    } else if (secondsLeft === 1) {
+      timerEL.textContent = secondsLeft + " seconds left";
+      secondsLeft--;
     } else {
       timerEL.textContent = "TIME IS UP";
       clearInterval(timer);
@@ -101,13 +101,13 @@ choicesEl.addEventListener("click", function (event) {
     check1El.textContent = "correct";
   } else {
     check1El.textContent = "wrong";
-    minutesLeft -=1;
+    secondsLeft -=1;
   }
   choicesEl.textContent = "";
   questionIndex++;
   if (questionIndex >= questions.length){
     clearInterval(timer);
-    alert(`game over, your final score is ${minutesLeft}`)
+    alert(`game over, your final score is ${secondsLeft}`)
   }else{
     getQuestion();
   }

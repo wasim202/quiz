@@ -4,7 +4,7 @@
 
 ## Description:
 
-## This quiz consistes of five questions, the user will have 80 seconds to answer these 5 question which are about capitals names in the US. The user will have a multiple choice of 4 options and will see if the answer is coorect or wrong once the user answers. I used java script, jquery, html, and css to build this quiz.
+## This quiz consistes of five questions, the user will have 80 seconds to answer these 5 question which are about capitals names in the US and if the time is up before the user answer all questions, the countes will show TIMES UP!. The user will have a multiple choice of 4 options and will see if the answer is coorect or wrong once the user answers. I used java script, jquery, html, and css to build this quiz.
 ## Table of Content:
 
 1. [Installation Instructions](#installation)

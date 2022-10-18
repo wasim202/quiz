@@ -5,24 +5,11 @@ body {
 /* #questions {
   display: none;
 } */
-.btn-submit {
-  margin-top: 40px;
-}
 #check1 {
   margin: 40px;
 }
-#check2 {
-  margin: 40px;
+.timer{
+  position: fixed;
+  right: 10%;
 }
 
-#check3 {
-  margin: 40px;
-}
-
-#check4 {
-  margin: 40px;
-}
-
-#check5 {
-  margin: 40px;
-}

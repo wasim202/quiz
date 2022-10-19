@@ -33,10 +33,13 @@ var questions = [
 ];
 //Declare reference variables
 var startQuizEl = document.getElementById("start-quiz");
-var headerEl = document.getElementById("haeder");
+//var headerEl = document.getElementById("header");
 var mainEl = document.querySelector(".content");
 var timerEL = document.querySelector(".timer");
 var choicesEl = document.getElementById("choices");
+var divQuestions = document.getElementById("questions");
+var scoringEl = document.getElementById("scoring");
+var scoreEl = document.getElementById("score");
 
 //var submitEl = document.querySelector(".btn-submit");
 
@@ -64,7 +67,7 @@ function setTime() {
 }
 
 function getQuestion() {
-  var divQuestions = document.getElementById("questions");
+ 
   var currentQuestion = questions[questionIndex];
   console.log(currentQuestion);
   var questionTitleEl = document.getElementById("question-title");
@@ -107,7 +110,10 @@ choicesEl.addEventListener("click", function (event) {
   questionIndex++;
   if (questionIndex >= questions.length){
     clearInterval(timer);
-    alert(`game over, your final score is ${secondsLeft}`)
+    //alert(`game over, your final score is ${secondsLeft}`)
+    divQuestions.classList.add("hide");
+    scoringEl.classList.remove("hide");
+    scoreEl.textContent=secondsLeft; 
   }else{
     getQuestion();
   }
@@ -122,7 +128,8 @@ choicesEl.addEventListener("click", function (event) {
 //getQuestion();
 startQuizEl.addEventListener("click", function (event) {
   event.preventDefault();
-  mainEl.remove();
+  mainEl.classList.add("hide");
+  divQuestions.classList.remove("hide");
   timer = setInterval(setTime,1000);
   getQuestion();
 });

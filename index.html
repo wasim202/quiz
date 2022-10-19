@@ -17,15 +17,21 @@
       </header>
       <button id="start-quiz">Start Quiz</button>
     </main>
-    <h2 class="timer" style="text-align: right"></h2>
+    
 
     <!-- // this div is going to be  incharge of showing the quetions and the options -->
 
-    <div id="questions">
+    <div class="hide" id="questions">
+      <h2 class="timer" style="text-align: right"></h2>
       <h2 id="question-title"></h2>
       <div id="choices"></div>
       <div id="check1"></div>
       <!-- <button id="next">NEXT</button> -->
+    </div>
+
+    <div class="hide" id="scoring">
+     <h2>your score is: <span id="score"></span>/80</h2>
+
     </div>
 
 
